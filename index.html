@@ -13,20 +13,58 @@
             color: #333;
             text-align: center;
             margin: 0;
-            padding: 20px;
+            padding: 40px 20px; /* Waxaan kordhiyay padding-ka si border-ku u muuqdo */
             direction: ltr;
+            min-height: 100vh;
+            position: relative;
+            box-sizing: border-box;
         }
+
+        /* Xudduudda Qurxoon (The Elegant Border) */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            right: 15px;
+            bottom: 15px;
+            border: 6px double #d4af37; /* Dahabi qaro weyn oo laba xariiq ah */
+            border-radius: 20px;
+            pointer-events: none; /* Si aanu u hor istaagin in sanduuqa la riixo */
+            z-index: 1000;
+            box-shadow: inset 0 0 20px rgba(212, 175, 55, 0.2), 0 0 15px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Qurxinta Geesaha (Corner Ornaments) */
+        body::after {
+            content: "✨";
+            position: fixed;
+            top: 25px;
+            left: 25px;
+            font-size: 24px;
+            pointer-events: none;
+            z-index: 1001;
+            color: #d4af37;
+            text-shadow: calc(100vw - 80px) 0 0 #d4af37, 
+                         0 calc(100vh - 80px) 0 #d4af37, 
+                         calc(100vw - 80px) calc(100vh - 80px) 0 #d4af37;
+        }
+
         h1 {
             color: #2c5e3b;
             font-size: 2.8em;
             margin-bottom: 5px;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 10;
         }
         .subtitle {
             color: #b8860b;
             font-size: 1.3em;
             margin-bottom: 30px;
             font-weight: bold;
+            position: relative;
+            z-index: 10;
         }
         .mother-section {
             background: linear-gradient(135deg, #d4af37, #f9f1d8);
@@ -38,6 +76,8 @@
             cursor: pointer;
             box-shadow: 0 6px 12px rgba(0,0,0,0.15);
             transition: transform 0.2s;
+            position: relative;
+            z-index: 10;
         }
         .mother-section:hover {
             transform: scale(1.03);
@@ -53,6 +93,9 @@
             gap: 20px;
             max-width: 1000px;
             margin: 0 auto;
+            position: relative;
+            z-index: 10;
+            padding-bottom: 30px;
         }
         .box {
             background: linear-gradient(135deg, #2c5e3b, #1e4028);
@@ -118,7 +161,7 @@
         <div class="mother-text" id="hooyoContent">Hooyo Macaan ❤️ (Halkan taabo)</div>
     </div>
 
-    <hr style="border: 1px dashed #d4af37; max-width: 800px; margin-bottom: 30px;">
+    <hr style="border: 1px dashed #d4af37; max-width: 800px; margin-bottom: 30px; position: relative; z-index: 10;">
 
     <div class="grid-container" id="gameBoard">
         </div>
@@ -187,20 +230,20 @@
 
                 // Rashka (Confetti)
                 if (index === 5 || index === 10) {
-                    // Rashka labada qof ee hadiyadda la qariyay (Midabbo gaar ah oo shidan)
+                    // Rashka labada qof ee hadiyadda la qariyay
                     confetti({
                         particleCount: 200,
                         spread: 120,
                         origin: { y: 0.5 },
-                        colors: ['#ff00ff', '#00ffff', '#ff0000', '#ffff00'] // Pink, Blue, Red, Yellow
+                        colors: ['#ff00ff', '#00ffff', '#ff0000', '#ffff00'] 
                     });
                 } else {
-                    // Rashka dadka caadiga ah (Midabada Ciidda)
+                    // Rashka dadka caadiga ah
                     confetti({
                         particleCount: 100,
                         spread: 80,
                         origin: { y: 0.6 },
-                        colors: ['#d4af37', '#2c5e3b', '#ffffff'] // Gold, Green, White
+                        colors: ['#d4af37', '#2c5e3b', '#ffffff'] 
                     });
                 }
             }

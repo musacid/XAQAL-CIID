@@ -155,7 +155,7 @@
         <hr style="border: 1px dashed #d4af37; max-width: 800px; margin-bottom: 30px;">
 
         <div class="grid-container" id="gameBoard">
-            </div>
+        </div>
     </div>
 
     <script>
@@ -206,98 +206,27 @@
             }
         }
 
-        // Data for the 13 people/boxes oo si xirfadaysan la isugu dhex qasay
+        // Data for the 13 people/boxes oo si xirfadaysan la isugu dhex qasay (WAA LA SAXAY)
         const prizesData = [
             { type: 'normal', challenge: "Waji faraxsan samee, kadib taabo mar kale! 😊", prize: "Nasiib wacan! Waxaad heshay <strong>10,000 SL SH</strong>. Waa lacag yar balse barako badan, qabooji niyada walaal! ✨" },
             
-            // Sanduuqa 2aad (Qosol / iska dhig qof  wayn oo maalqabeen ah kadib fur! 💪😎", prize: "waan ka xunay! Ciiddan waa tii carruurta, adigu waad weynaatay xaqal ciid ma lihid kkkk 😂 <br><div class='fursad-text'>Haniyad jabine, waxaad leedahay fursad kale ee dooro sanduuq kale! 🎁🏃‍♂️</div>" },
+            // Sanduuqa 2aad - WAA LA SAXAY
+            { type: 'joke', challenge: "Iska dhig qof wayn oo maalqabeen ah kadib fur! 💪😎", prize: "Waan ka xunahay! Ciiddan waa tii carruurta, adigu waad weynaatay xaqal ciid ma lihid kkkk 😂 <br><div class='fursad-text'>Haniyad jabine, waxaad leedahay fursad kale ee dooro sanduuq kale! 🎁🏃‍♂️</div>" },
             
             { type: 'normal', challenge: "Qofka kugu xiga u sheeg hal shay oo aad ku jeceshahay, kadib fur! 🤝💕", prize: "Hambalyo! Waxaad heshay <strong>15,000 SL SH</strong>. Xoogaa waad dhaantaa qaar badan ee ku farax! 🌸" },
             
             { type: 'normal', challenge: "bakhaylnimada qofka kaa horeya ku wareeji, kadib fur! 🏃‍♂️💨", prize: "Waaaw! 🌟 Maanta adigaa ugu nasiib badan! Waxaad heshay <strong>40,000 SL SH!</strong> 💸 🎉 <br><br><em>Lakiin nasiib wanaagsanow... jaarkaaga ka warsug kkkk 😂</em>" },
             
-            // Sanduuqa 5aad (Qosol / Bilaa lacag)
-            { type: 'joke', challenge: "dheh alxamdulillah inaad soo gaadhay ciidan kadib fur kkkk 👴👵", prize: "waan ka xunahay xaqalciidki sanduuqann wuu lumay kkkk 🤣 <br><div class='fursad-text'>Haniyad jabine, waxaad leedahay fursad kale ee dooro sanduuq kale ! 🎯</div>" },
+            // Sanduuqa 5aad
+            { type: 'joke', challenge: "Dheh alxamdulillah inaad soo gaadhay ciidan kadib fur kkkk 👴👵", prize: "Waan ka xunahay xaqalciidkii sanduuqann wuu lumay kkkk 🤣 <br><div class='fursad-text'>Haniyad jabine, waxaad leedahay fursad kale ee dooro sanduuq kale ! 🎯</div>" },
             
             { type: 'normal', challenge: "Istaag oo dheh 'Anigaa qoyskan ugu qurxoon , hadii laga diidana waxbixi', kadib fur! 😂", prize: "Hambalyo! Asal ahaan waxaad heshay 10,000 SL SH... <br><strong>BALSE</strong> waxaad nasiib u yeelatay inaad 10,000 ka qaadato kii kaa horeeyay ee sanduuq (3)! Isku geyn waa <strong>20,000 SL SH!</strong> Kkkk 😈" },
             
-            // Sanduuqa 7aad (Kan Khaaska ah ee Hadiyada Qariyan)
+            // Sanduuqa 7aad 
             { type: 'special', challenge: "Wajigaaga ka dhig sidii qof liin dhanaan qaniinay 🍋, ilaa aan dhammaan wada qosolno,!, kadib fur! 🗣️", prize: "🎉 <strong>Aad baad u nasiib badantahay!</strong> Waxaad heshay bashqad qiimo badan! <br><br>Hadiyadaada lama sheegin, ee ila soo hadal sida ugu dhakhsaha badan si aad u hesho abaal marintaada qaaliga ah! 🎁🤫" },
             
-            { type: 'normal', challenge: "qofka aad ugu jeceshahy wax ubalan qaad', kadib fur! 🙌", prize: "Nasiib wacan! Waxaad heshay <strong>10,000 SL SH</strong>. Qanaacadaa ugu wacan, ciid wanaagsan! 🎈" },
+            { type: 'normal', challenge: "qofka aad ugu jeceshahy wax ubalan qaad, kadib fur! 🙌", prize: "Nasiib wacan! Waxaad heshay <strong>10,000 SL SH</strong>. Qanaacadaa ugu wacan, ciid wanaagsan! 🎈" },
             
             { type: 'normal', challenge: "Qofka aad lacag ku leedahay xusuusi inuu iska bixiyo, kadib fur! 💸", prize: "Hambalyo! Waxaad heshay <strong>20,000 SL SH!</strong> Waa dhexdhexaad wacan, ciid mubaarak! 🎊" },
             
-            // Sanduuqa 10aad (Qosol / Bilaa lacag)
-            { type: 'joke', challenge: "hooyo hal mar madaxa kasoo dhunko kadib fur 🗣️👴", prize: "masha allah hambalyo adigu xaqalciidkaagi ajar ahaan ayaad uqadatay oo hoyada ayaad so dhunkatay 💸🙅‍♂️ <br><div class='fursad-text'>Kaftan weeye! Haniyad jabine, sanduuq kale oo nasiibkaaga ah dooro! 🎲</div>" },
-            
-            { type: 'normal', challenge: "qof aad ku tuhunsantay inuu ramadanti kijada biyo ku cabay farta ku fiiq, kadib fur! 👉😂", prize: "Nasiib wacan! Waxaad heshay <strong>10,000 SL SH</strong>. Yaanay kugu yaraanin, niyadda wanaaji! 🌺" },
-            
-            { type: 'normal', challenge: "Isku day inaad suxulkaaga carrabka ku taabato!, kadib fur! 🎤", prize: "Hambalyo! Waxaad heshay <strong>15,000 SL SH</strong>. Ku ciid farxad iyo caafimaad! 🌙" },
-            
-            { type: 'normal', challenge: "Salaan diiran sii qofka kugu xiga ka hor intaanad furin! 🤗", prize: "Nasiib wacan! Waxaad heshay <strong>10,000 SL SH</strong>. Waa inoo ciida dambe iyo nasiib fiican! 😄" }
-        ];
-
-        function createBoard() {
-            const board = document.getElementById('gameBoard');
-            for (let i = 0; i < 13; i++) {
-                let box = document.createElement('div');
-                box.id = 'box-' + i;
-                box.onclick = () => handleBoxClick(i);
-
-                let state = boxStates[i];
-                if (state === 0) {
-                    box.className = 'box';
-                    box.innerHTML = `<strong>Sanduuqa ${i + 1}</strong>`;
-                } else if (state === 1) {
-                    box.className = 'box challenge-state';
-                    box.innerHTML = `${prizesData[i].challenge} <br><div class="small-text">(Taabo mar kale)</div>`;
-                } else if (state === 2) {
-                    box.className = 'box opened';
-                    box.innerHTML = prizesData[i].prize;
-                }
-                
-                board.appendChild(box);
-            }
-            renderHooyo(); 
-        }
-
-        function handleBoxClick(index) {
-            let state = boxStates[index];
-            let boxElem = document.getElementById('box-' + index);
-
-            if (state === 0) {
-                boxElem.innerHTML = `${prizesData[index].challenge} <br><div class="small-text">(Taabo mar kale)</div>`;
-                boxElem.className = 'box challenge-state';
-                boxStates[index] = 1;
-                saveGame(); 
-            } else if (state === 1) {
-                boxElem.innerHTML = prizesData[index].prize;
-                boxElem.className = 'box opened';
-                boxStates[index] = 2;
-                saveGame(); 
-
-                // Rashka oo lagu saleynayo nooca sanduuqa (type) intii index lagu saleyn lahaa
-                if (prizesData[index].type === 'special') {
-                    confetti({
-                        particleCount: 200,
-                        spread: 120,
-                        origin: { y: 0.5 },
-                        colors: ['#ff00ff', '#00ffff', '#ff0000', '#ffff00'] 
-                    });
-                } else if (prizesData[index].type === 'normal') {
-                    confetti({
-                        particleCount: 100,
-                        spread: 80,
-                        origin: { y: 0.6 },
-                        colors: ['#d4af37', '#2c5e3b', '#ffffff'] 
-                    });
-                }
-                // Haddii uu yahay 'joke' wax rash ah loo ridi maayo
-            }
-        }
-
-        createBoard();
-    </script>
-</body>
-</html>
+            // Sanduuqa 1

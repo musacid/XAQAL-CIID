@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="so">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xaqal Ciidka Qoyska - Ciid Mubaarak!</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fdfbf7;
+            color: #333;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+            direction: ltr;
+        }
+        h1 {
+            color: #2c5e3b;
+            font-size: 2.5em;
+            margin-bottom: 5px;
+        }
+        .subtitle {
+            color: #d4af37;
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+        /* Hooyo Box */
+        .mother-section {
+            background: linear-gradient(135deg, #d4af37, #f9f1d8);
+            border: 3px solid #b8962e;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 0 auto 40px auto;
+            max-width: 600px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+        .mother-section:hover {
+            transform: scale(1.02);
+        }
+        .mother-text {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #2c5e3b;
+        }
+        /* Grid for 11 boxes */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .box {
+            background-color: #2c5e3b;
+            color: white;
+            border-radius: 10px;
+            padding: 30px 20px;
+            font-size: 1.2em;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            min-height: 120px;
+        }
+        .box:hover {
+            background-color: #3a7a4d;
+        }
+        .box.opened {
+            background-color: #e0e0e0;
+            color: #333;
+            cursor: default;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+            border: 2px solid #ccc;
+            transform: none;
+        }
+        .small-text {
+            font-size: 0.8em;
+            color: #ffd700;
+            margin-top: 10px;
+        }
+        .opened .small-text {
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🌙 CIID MUBAARAK! ✨</h1>
+    <div class="subtitle">Soo dhawaada qoyska, maanta waa maalintii farxadda iyo xaqal ciidka! adigaa shakhsiyad gaar ah ah!</div>
+
+    <div class="mother-section" id="hooyoBox" onclick="openHooyo()">
+        <div class="mother-text" id="hooyoContent">Hooyo Macaan ❤️ (Halkan taabo)</div>
+    </div>
+
+    <hr style="border: 1px solid #ccc; max-width: 800px; margin-bottom: 30px;">
+
+    <div class="grid-container" id="gameBoard">
+        </div>
+
+    <script>
+        // Hooyo Logic
+        let hooyoOpened = false;
+        function openHooyo() {
+            if (!hooyoOpened) {
+                document.getElementById('hooyoContent').innerHTML = "✨ Ciid Mubaarak Hooyo Macaan! ✨<br><br>Adigu tartan kuma jirtid, xaqal ciidkaaguna waa diyaar. <br>Nambarkayga: <strong>0634686352</strong> waxa uu u dirayaa keeda: <strong>0634828028</strong>. <br>Waan ku jecelahay hooyo! ❤️";
+                hooyoOpened = true;
+            }
+        }
+
+        // Data for the 11 people
+        const prizesData = [
+            { 
+                challenge: "Waji faraxsan samee, kadib taabo mar kale! 😊", 
+                prize: "Nasiib wacan! Waxaad heshay <strong>10,000 SL SH</strong>. Waa lacag yar balse barako badan, qabooji niyada walaal! ✨" 
+            },
+            { 
+                challenge: "Qofka ku xiga u sheeg hal shay oo aad ku jeceshahay, kadib fur! 🤝", 
+                prize: "Hambalyo! Waxaad heshay <strong>15,000 SL SH</strong>. Xoogaa waad dhaantaa kuwo kale ee ku farax! 🌸" 
+            },
+            { 
+                challenge: "U ducee Hooyo duco dheer oo qurxoon, kadib fur! 🤲", 
+                prize: "Waaaw! 🌟 Maanta adigaa ugu nasiib badan! Waxaad heshay <strong>40,000 SL SH!</strong> 💸 🎉 <br><br><em>Lakiin nasiib wanaagsane... jaarkaaga ka warsug kkkk 😂</em>" 
+            },
+            { 
+                challenge: "Qosol weyn samee kkkk, kadib fur! 😂", 
+                prize: "Hambalyo! Asal ahaan waxaad heshay 10,000 SL SH... <br><strong>BALSE</strong> waxaad nasiib u yeelatay inaad 10,000 ka qaadato kii kaa horeeyay! Isku geyn waa <strong>20,000 SL SH!</strong> Kkkk 😈" 
+            },
+            { 
+                challenge: "Gacmaha kor u taag oo dheh 'Alhamdulillah', kadib fur! 🙌", 
+                prize: "Nasiib wacan! Waxaad heshay <strong>10,000 SL SH</strong>. Qanaacadaa ugu wacan, ciid wanaagsan! 🎈" 
+            },
+            { 
+                challenge: "Dheh 'Ciid Mubaarak' cod dheer!, kadib fur! 🗣️", 
+                prize: "🎉 <strong>Aad baad u nasiib badantahay!</strong> Waxaad heshay bashqad qiimo badan! <br><br>Hadiyadaada lama sheegin, ee ila soo hadal sida ugu dhakhsaha badan si aad u hesho abaal marintaada qaaliga ah! 🎁🤫" 
+            },
+            { 
+                challenge: "Saddex jeer saliga nabiga mari ﷺ, kadib fur! 📿", 
+                prize: "Hambalyo! Waxaad heshay <strong>20,000 SL SH!</strong> Waa dhexdhexaad wacan, ciid mubaarak! 🎊" 
+            },
+            { 
+                challenge: "Hooyo gacanta ama madaxa ka dhunko, kadib taabo mar kale! ❤️", 
+                prize: "Nasiib wacan! Waxaad heshay <strong>10,000 SL SH</strong>. Yaanay ku yaraanin, niyadda wanaaji! 🌺" 
+            },
+            { 
+                challenge: "Hal abuur yar samee ama gabay gaaban sheeg, kadib fur! 🎤", 
+                prize: "Hambalyo! Waxaad heshay <strong>15,000 SL SH</strong>. Ku ciid farxad iyo caafimaad! 🌙" 
+            },
+            { 
+                challenge: "Salaan diiran sii qofka ku xiga ka hor intaanad furin! 🤗", 
+                prize: "Nasiib wacan! Waxaad heshay <strong>10,000 SL SH</strong>. Waa inoo ciida dambe iyo nasiib fiican! 😄" 
+            },
+            { 
+                challenge: "Inyar dhoolacadee, kadib taabo mar kale! 😁", 
+                prize: "🎉 <strong>Aad baad u nasiib badantahay!</strong> Waxaad heshay bashqad qiimo badan! <br><br>Hadiyadaada lama sheegin, ee ila soo hadal sida ugu dhakhsaha badan si aad u hesho abaal marintaada qaaliga ah! 🎁🤫" 
+            }
+        ];
+
+        // Track states of boxes: 0 = untouched, 1 = challenge shown, 2 = opened
+        let boxStates = new Array(11).fill(0);
+
+        function createBoard() {
+            const board = document.getElementById('gameBoard');
+            for (let i = 0; i < 11; i++) {
+                let box = document.createElement('div');
+                box.className = 'box';
+                box.id = 'box-' + i;
+                box.innerHTML = `<strong>Sanduuqa ${i + 1}</strong>`;
+                box.onclick = () => handleBoxClick(i);
+                board.appendChild(box);
+            }
+        }
+
+        function handleBoxClick(index) {
+            let state = boxStates[index];
+            let boxElem = document.getElementById('box-' + index);
+
+            if (state === 0) {
+                // Show Challenge
+                boxElem.innerHTML = `${prizesData[index].challenge} <br><div class="small-text">(Riix mar kale marka aad samayso)</div>`;
+                boxStates[index] = 1;
+            } else if (state === 1) {
+                // Show Prize and Lock
+                boxElem.innerHTML = prizesData[index].prize;
+                boxElem.classList.add('opened');
+                boxStates[index] = 2;
+            }
+            // If state === 2, it does nothing (locked)
+        }
+
+        // Initialize the board on page load
+        createBoard();
+    </script>
+</body>
+</html>

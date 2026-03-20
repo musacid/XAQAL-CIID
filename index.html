@@ -46,7 +46,7 @@
             margin-top: 0;
             margin-bottom: 5px;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-            user-select: none; /* Si aanu qoraalku u madawbaan markay taabanayaan */
+            user-select: none; 
         }
         .subtitle {
             color: #b8860b;
@@ -134,6 +134,12 @@
         .opened .small-text {
             color: #666;
         }
+        .fursad-text {
+            color: #d35400;
+            font-weight: bold;
+            font-size: 0.9em;
+            margin-top: 15px;
+        }
     </style>
 </head>
 <body>
@@ -154,18 +160,23 @@
 
     <script>
         // Nidaamka Xusuusta (Local Storage)
-        let boxStates = JSON.parse(localStorage.getItem('ciidGameState')) || new Array(11).fill(0);
-        let hooyoOpened = localStorage.getItem('hooyoState') === 'true';
-        let resetCounter = 0; // Tiriyeha sirta ah
+        let boxStates = JSON.parse(localStorage.getItem('ciidGameState'));
+        
+        // Hubi haddii tiradu tahay 13, haddii kale dib u cusboonaysii si ayna cilad u dhicin
+        if (!boxStates || boxStates.length !== 13) {
+            boxStates = new Array(13).fill(0);
+        }
 
-        // Function-ka Sirta ah ee dib u soo celinaya ciyaarta
+        let hooyoOpened = localStorage.getItem('hooyoState') === 'true';
+        let resetCounter = 0; 
+
         function resetGame() {
             resetCounter++;
             if (resetCounter >= 3) {
                 if (confirm("Ma hubtaa inaad dib u bilaabayso ciyaarta? (Tani waxay tirtiraysaa wixii horey loo furay)")) {
                     localStorage.removeItem('ciidGameState');
                     localStorage.removeItem('hooyoState');
-                    location.reload(); // Bogga ayuu dib u cusboonaysiinayaa
+                    location.reload(); 
                 }
                 resetCounter = 0;
             }
@@ -176,7 +187,6 @@
             localStorage.setItem('hooyoState', hooyoOpened);
         }
 
-        // Hooyo Logic
         function renderHooyo() {
             if (hooyoOpened) {
                 document.getElementById('hooyoContent').innerHTML = "✨ Ciid Mubaarak Hooyo Macaan! ✨<br><br>Adigu tartan kuma jirtid, xaqal ciidkaaguna waa diyaar. <br><br>Waan ku jecelahay Hooyo! ❤️";
@@ -187,9 +197,8 @@
             if (!hooyoOpened) {
                 document.getElementById('hooyoContent').innerHTML = "✨ Ciid Mubaarak Hooyo Macaan! ✨<br><br>Adigu tartan kuma jirtid, xaqal ciidkaaguna waa diyaar. <br><br>Waan ku jecelahay Hooyo! ❤️";
                 hooyoOpened = true;
-                saveGame(); // Save state
+                saveGame(); 
                 
-                // Rashka Hooyo (Dahabi iyo Cagaar)
                 confetti({
                     particleCount: 150,
                     spread: 100,
@@ -199,24 +208,31 @@
             }
         }
 
-        // Data for the 11 people
+        // Data for the 13 people/boxes
         const prizesData = [
             { challenge: "Waji faraxsan samee, kadib taabo mar kale! 😊", prize: "Nasiib wacan! Waxaad heshay <strong>10,000 SL SH</strong>. Waa lacag yar balse barako badan, qabooji niyada walaal! ✨" },
             { challenge: "Qofka kugu xiga u sheeg hal shay oo aad ku jeceshahay, kadib fur! 🤝💕", prize: "Hambalyo! Waxaad heshay <strong>15,000 SL SH</strong>. Xoogaa waad dhaantaa qaar badan ee ku farax! 🌸" },
             { challenge: "bakhaylnimada qofka kaa horeya ku wareeji, kadib fur! 🏃‍♂️💨", prize: "Waaaw! 🌟 Maanta adigaa ugu nasiib badan! Waxaad heshay <strong>40,000 SL SH!</strong> 💸 🎉 <br><br><em>Lakiin nasiib wanaagsanow... jaarkaaga ka warsug kkkk 😂</em>" },
-            { challenge: "Istaag oo dheh 'Anigaa qoyskan ugu qurxoon , hadii laga diidana waxbixi', kadib fur! 😂", prize: "Hambalyo! Asal ahaan waxaad heshay 10,000 SL SH... <br><strong>BALSE</strong> waxaad nasiib u yeelatay inaad 10,000 ka qaadato kii kaa horeeyay ee sanduuq 3! Isku geyn waa <strong>20,000 SL SH!</strong> Kkkk 😈" },
+            { challenge: "Istaag oo dheh 'Anigaa qoyskan ugu qurxoon , hadii laga diidana waxbixi', kadib fur! 😂", prize: "Hambalyo! Asal ahaan waxaad heshay 10,000 SL SH... <br><strong>BALSE</strong> waxaad nasiib u yeelatay inaad 10,000 ka qaadato kii kaa horeeyay! Isku geyn waa <strong>20,000 SL SH!</strong> Kkkk 😈" },
             { challenge: "qofka aad ugu jeceshahy wax ubalan qaad', kadib fur! 🙌", prize: "Nasiib wacan! Waxaad heshay <strong>10,000 SL SH</strong>. Qanaacadaa ugu wacan, ciid wanaagsan! 🎈" },
-            { challenge: "Wajigaaga ka dhig sidii qof liin dhanaan qaniinay 🍋, ilaa aan dhammaan wada qosolno,!, kadib fur! 🗣️", prize: "🎉 <strong>Aad baad u nasiib badantahay!</strong> Waxaad heshay bashqad qiimo badan! <br><br>Hadiyadaada lama sheegin, ee ila soo hadal sida ugu dhakhsaha badan si aad u hesho abaal marintaada qaaliga ah! 🎁🤫" },
+            
+            // Sanduuqan 6aad (Index 5) waa kan keliya ee Hadiyada Qariyan leh
+            { challenge: "Wajigaaga ka dhig sidii qof liin dhanaan qaniinay 🍋, ilaa aan dhammaan wada qosolno,!, kadib fur! 🗣️", prize: "🎉 <strong>Aad baad u nasiib badantahay!</strong> Waxaad heshay bashqad qiimo badan! <br><br>Hadiyadaada lama sheegin, ee ila soo hadal sida ugu dhakhsaha badan si aad u hesho abaal marintaada qaaliga ah! 🎁🤫" }, 
+            
             { challenge: "Qofka aad lacag ku leedahay xusuusi inuu iska bixiyo, kadib fur! 💸", prize: "Hambalyo! Waxaad heshay <strong>20,000 SL SH!</strong> Waa dhexdhexaad wacan, ciid mubaarak! 🎊" },
             { challenge: "qof aad ku tuhunsantay inuu ramadanti kijada biyo ku cabay farta ku fiiq, kadib fur! 👉😂", prize: "Nasiib wacan! Waxaad heshay <strong>10,000 SL SH</strong>. Yaanay kugu yaraanin, niyadda wanaaji! 🌺" },
             { challenge: "Isku day inaad suxulkaaga carrabka ku taabato!, kadib fur! 🎤", prize: "Hambalyo! Waxaad heshay <strong>15,000 SL SH</strong>. Ku ciid farxad iyo caafimaad! 🌙" },
             { challenge: "Salaan diiran sii qofka kugu xiga ka hor intaanad furin! 🤗", prize: "Nasiib wacan! Waxaad heshay <strong>10,000 SL SH</strong>. Waa inoo ciida dambe iyo nasiib fiican! 😄" },
-            { challenge: "Inyar dhoolacadee, kadib taabo mar kale! 😁", prize: "🎉 <strong>Aad baad u nasiib badantahay!</strong> Waxaad heshay bashqad qiimo badan! <br><br>Hadiyadaada lama sheegin, ee ila soo hadal sida ugu dhakhsaha badan si aad u hesho abaal marintaada qaaliga ah! 🎁🤫" }
+            
+            // 3-da Sanduuq ee Cusub (Fukaahiga ah)
+            { challenge: "Tus murqahaaga oo iska dhig qof weyn oo masuul ah! 💪😎", prize: "Nasiib xumo! Ciiddan waa tii carruurta, adigu waad weynaatay xaqal ciid ma lihid kkkk 😂 <br><div class='fursad-text'>Haniyad jabine, waxaad leedahay fursad kale ee dooro sanduuqa hadhay! 🎁🏃‍♂️</div>" },
+            { challenge: "Sida odayaasha ama habaraha waaweyn u qufac oo dadka u ducee kkkk 👴👵", prize: "Qof weyn baad tahay! Xaqal ciid dadka waaweyn lama siiyo, adigaaba lagaa rabaa kkkk 🤣 <br><div class='fursad-text'>Haniyad jabine, waxaad leedahay fursad kale ee dooro sanduuqa hadhay! 🎯</div>" },
+            { challenge: "Istaag oo dheh 'Berigii aan dhalinyarada ahaa...' adigoo sheeko been ah samaynaya 🗣️👴", prize: "Adeer/Eedo waqtigaagii wuu dhacay! Odayaasha iyagaa wax bixiya ee wax ma qaataan kkkk 💸🙅‍♂️ <br><div class='fursad-text'>Kaftan weeye! Haniyad jabine, sanduuq kale oo nasiibkaaga ah dooro! 🎲</div>" }
         ];
 
         function createBoard() {
             const board = document.getElementById('gameBoard');
-            for (let i = 0; i < 11; i++) {
+            for (let i = 0; i < 13; i++) {
                 let box = document.createElement('div');
                 box.id = 'box-' + i;
                 box.onclick = () => handleBoxClick(i);
@@ -235,7 +251,7 @@
                 
                 board.appendChild(box);
             }
-            renderHooyo(); // Hubi in sanduuqa Hooyo sidii la rabay u soo baxo
+            renderHooyo(); 
         }
 
         function handleBoxClick(index) {
@@ -246,21 +262,24 @@
                 boxElem.innerHTML = `${prizesData[index].challenge} <br><div class="small-text">(Taabo mar kale)</div>`;
                 boxElem.className = 'box challenge-state';
                 boxStates[index] = 1;
-                saveGame(); // Save
+                saveGame(); 
             } else if (state === 1) {
                 boxElem.innerHTML = prizesData[index].prize;
                 boxElem.className = 'box opened';
                 boxStates[index] = 2;
-                saveGame(); // Save
+                saveGame(); 
 
-                if (index === 5 || index === 10) {
+                // Rashku (Confetti) dadka heley lacagta uun buu u dhacayaa
+                if (index === 5) {
+                    // Sanduuqa Khaaska ah
                     confetti({
                         particleCount: 200,
                         spread: 120,
                         origin: { y: 0.5 },
                         colors: ['#ff00ff', '#00ffff', '#ff0000', '#ffff00'] 
                     });
-                } else {
+                } else if (index < 10) {
+                    // Sanduuqyada Caadiga ah
                     confetti({
                         particleCount: 100,
                         spread: 80,
@@ -268,6 +287,7 @@
                         colors: ['#d4af37', '#2c5e3b', '#ffffff'] 
                     });
                 }
+                // Sanduuqyada 10, 11, iyo 12 wax rash ah looma ridinayo si loogu qoslo kkkk
             }
         }
 

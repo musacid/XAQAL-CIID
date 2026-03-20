@@ -1,304 +1,303 @@
 <!DOCTYPE html>
 <html lang="so">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Xaqal Ciidka Qoyska - Ciid Mubaarak!</title>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: radial-gradient(circle at top center, #fffdf8, #f4ecd8);
-            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M54.627 0l.83.83-1.66 1.66-.83-.83.83-.83zM27.314 0l.83.83-1.66 1.66-.83-.83.83-.83z' fill='%23d4af37' fill-opacity='0.15' fill-rule='evenodd'/%3E%3C/svg%3E");
-            color: #333;
-            margin: 0;
-            padding: 15px; 
-            direction: ltr;
-        }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xaqal Ciidka Qoyska - Ciid Mubaarak!</title>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: radial-gradient(circle at top center, #fffdf8, #f4ecd8);
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M54.627 0l.83.83-1.66 1.66-.83-.83.83-.83zM27.314 0l.83.83-1.66 1.66-.83-.83.83-.83z' fill='%23d4af37' fill-opacity='0.15' fill-rule='evenodd'/%3E%3C/svg%3E");
+            color: #333;
+            margin: 0;
+            padding: 15px; 
+            direction: ltr;
+        }
 
-        .page-wrapper {
-            border: 6px double #d4af37;
-            border-radius: 20px;
-            box-shadow: inset 0 0 20px rgba(212, 175, 55, 0.2), 0 0 15px rgba(212, 175, 55, 0.4);
-            min-height: calc(100vh - 30px); 
-            padding: 40px 20px;
-            text-align: center;
-            position: relative;
-            background: rgba(255, 255, 255, 0.3); 
-        }
+        .page-wrapper {
+            border: 6px double #d4af37;
+            border-radius: 20px;
+            box-shadow: inset 0 0 20px rgba(212, 175, 55, 0.2), 0 0 15px rgba(212, 175, 55, 0.4);
+            min-height: calc(100vh - 30px); 
+            padding: 40px 20px;
+            text-align: center;
+            position: relative;
+            background: rgba(255, 255, 255, 0.3); 
+        }
 
-        .page-wrapper::before, .page-wrapper::after {
-            content: "✨";
-            position: absolute;
-            top: 15px;
-            font-size: 24px;
-            color: #d4af37;
-        }
-        .page-wrapper::before { left: 20px; }
-        .page-wrapper::after { right: 20px; }
+        .page-wrapper::before, .page-wrapper::after {
+            content: "✨";
+            position: absolute;
+            top: 15px;
+            font-size: 24px;
+            color: #d4af37;
+        }
+        .page-wrapper::before { left: 20px; }
+        .page-wrapper::after { right: 20px; }
 
-        h1 {
-            color: #2c5e3b;
-            font-size: 2.8em;
-            margin-top: 0;
-            margin-bottom: 5px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-            user-select: none; 
-        }
-        .subtitle {
-            color: #b8860b;
-            font-size: 1.3em;
-            margin-bottom: 30px;
-            font-weight: bold;
-        }
-        .mother-section {
-            background: linear-gradient(135deg, #d4af37, #f9f1d8);
-            border: 3px solid #b8962e;
-            border-radius: 15px;
-            padding: 20px;
-            margin: 0 auto 40px auto;
-            max-width: 600px;
-            cursor: pointer;
-            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-            transition: transform 0.2s;
-        }
-        .mother-section:hover {
-            transform: scale(1.03);
-        }
-        .mother-text {
-            font-size: 1.6em;
-            font-weight: bold;
-            color: #2c5e3b;
-        }
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            max-width: 1000px;
-            margin: 0 auto;
-            padding-bottom: 20px;
-        }
-        .box {
-            background: linear-gradient(135deg, #2c5e3b, #1e4028);
-            color: white;
-            border-radius: 12px;
-            padding: 30px 20px;
-            font-size: 1.2em;
-            cursor: pointer;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            transition: all 0.3s ease-in-out;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            min-height: 120px;
-            border: 2px solid #1e4028;
-        }
-        .box:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
-        }
-        .box.challenge-state {
-            background: linear-gradient(135deg, #e67e22, #d35400);
-            border: 2px solid #b84a00;
-            transform: scale(1.05);
-            box-shadow: 0 8px 16px rgba(230, 126, 34, 0.4);
-        }
-        .box.challenge-state:hover {
-            transform: scale(1.05);
-        }
-        .box.opened {
-            background: #e0e0e0;
-            color: #444;
-            cursor: default;
-            box-shadow: inset 0 3px 6px rgba(0,0,0,0.1);
-            border: 2px solid #ccc;
-            transform: none;
-        }
-        .box.opened:hover {
-            transform: none;
-            box-shadow: inset 0 3px 6px rgba(0,0,0,0.1);
-        }
-        .small-text {
-            font-size: 0.8em;
-            color: #ffd700;
-            margin-top: 10px;
-        }
-        .challenge-state .small-text {
-            color: #fff;
-            font-weight: bold;
-        }
-        .opened .small-text {
-            color: #666;
-        }
-        .fursad-text {
-            color: #d35400;
-            font-weight: bold;
-            font-size: 0.9em;
-            margin-top: 15px;
-        }
-    </style>
+        h1 {
+            color: #2c5e3b;
+            font-size: 2.8em;
+            margin-top: 0;
+            margin-bottom: 5px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            user-select: none; 
+        }
+        .subtitle {
+            color: #b8860b;
+            font-size: 1.3em;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+        .mother-section {
+            background: linear-gradient(135deg, #d4af37, #f9f1d8);
+            border: 3px solid #b8962e;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 0 auto 40px auto;
+            max-width: 600px;
+            cursor: pointer;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+            transition: transform 0.2s;
+        }
+        .mother-section:hover {
+            transform: scale(1.03);
+        }
+        .mother-text {
+            font-size: 1.6em;
+            font-weight: bold;
+            color: #2c5e3b;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding-bottom: 20px;
+        }
+        .box {
+            background: linear-gradient(135deg, #2c5e3b, #1e4028);
+            color: white;
+            border-radius: 12px;
+            padding: 30px 20px;
+            font-size: 1.2em;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: all 0.3s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            min-height: 120px;
+            border: 2px solid #1e4028;
+        }
+        .box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+        }
+        .box.challenge-state {
+            background: linear-gradient(135deg, #e67e22, #d35400);
+            border: 2px solid #b84a00;
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(230, 126, 34, 0.4);
+        }
+        .box.challenge-state:hover {
+            transform: scale(1.05);
+        }
+        .box.opened {
+            background: #e0e0e0;
+            color: #444;
+            cursor: default;
+            box-shadow: inset 0 3px 6px rgba(0,0,0,0.1);
+            border: 2px solid #ccc;
+            transform: none;
+        }
+        .box.opened:hover {
+            transform: none;
+            box-shadow: inset 0 3px 6px rgba(0,0,0,0.1);
+        }
+        .small-text {
+            font-size: 0.8em;
+            color: #ffd700;
+            margin-top: 10px;
+        }
+        .challenge-state .small-text {
+            color: #fff;
+            font-weight: bold;
+        }
+        .opened .small-text {
+            color: #666;
+        }
+        .fursad-text {
+            color: #d35400;
+            font-weight: bold;
+            font-size: 0.9em;
+            margin-top: 15px;
+        }
+    </style>
 </head>
 <body>
 
-    <div class="page-wrapper">
-        <h1 onclick="resetGame()">🌙 CIID MUBAARAK! ✨</h1>
-        <div class="subtitle">Soo dhawaada, maanta waa maalintii farxadda iyo xaqal ciidka, qof walba nasiib wacan! 🎈</div>
+    <div class="page-wrapper">
+        <h1 onclick="resetGame()">🌙 CIID MUBAARAK! ✨</h1>
+        <div class="subtitle">Soo dhawaada, maanta waa maalintii farxadda iyo xaqal ciidka, qof walba nasiib wacan! 🎈</div>
 
-        <div class="mother-section" id="hooyoBox" onclick="openHooyo()">
-            <div class="mother-text" id="hooyoContent">Hooyo Macaan ❤️ (Halkan taabo)</div>
-        </div>
+        <div class="mother-section" id="hooyoBox" onclick="openHooyo()">
+            <div class="mother-text" id="hooyoContent">Hooyo Macaan ❤️ (Halkan taabo)</div>
+        </div>
 
-        <hr style="border: 1px dashed #d4af37; max-width: 800px; margin-bottom: 30px;">
+        <hr style="border: 1px dashed #d4af37; max-width: 800px; margin-bottom: 30px;">
 
-        <div class="grid-container" id="gameBoard">
-        </div>
-    </div>
+        <div class="grid-container" id="gameBoard">
+            </div>
+    </div>
 
-    <script>
-        let boxStates = JSON.parse(localStorage.getItem('ciidGameState'));
-        
-        if (!boxStates || boxStates.length !== 13) {
-            boxStates = new Array(13).fill(0);
-        }
+    <script>
+        let boxStates = JSON.parse(localStorage.getItem('ciidGameState'));
+        
+        if (!boxStates || boxStates.length !== 13) {
+            boxStates = new Array(13).fill(0);
+        }
 
-        let hooyoOpened = localStorage.getItem('hooyoState') === 'true';
-        let resetCounter = 0; 
+        let hooyoOpened = localStorage.getItem('hooyoState') === 'true';
+        let resetCounter = 0; 
 
-        function resetGame() {
-            resetCounter++;
-            if (resetCounter >= 3) {
-                if (confirm("Ma hubtaa inaad dib u bilaabayso ciyaarta? (Tani waxay tirtiraysaa wixii horey loo furay)")) {
-                    localStorage.removeItem('ciidGameState');
-                    localStorage.removeItem('hooyoState');
-                    location.reload(); 
-                }
-                resetCounter = 0;
-            }
-        }
+        function resetGame() {
+            resetCounter++;
+            if (resetCounter >= 3) {
+                if (confirm("Ma hubtaa inaad dib u bilaabayso ciyaarta? (Tani waxay tirtiraysaa wixii horey loo furay)")) {
+                    localStorage.removeItem('ciidGameState');
+                    localStorage.removeItem('hooyoState');
+                    location.reload(); 
+                }
+                resetCounter = 0;
+            }
+        }
 
-        function saveGame() {
-            localStorage.setItem('ciidGameState', JSON.stringify(boxStates));
-            localStorage.setItem('hooyoState', hooyoOpened);
-        }
+        function saveGame() {
+            localStorage.setItem('ciidGameState', JSON.stringify(boxStates));
+            localStorage.setItem('hooyoState', hooyoOpened);
+        }
 
-        function renderHooyo() {
-            if (hooyoOpened) {
-                document.getElementById('hooyoContent').innerHTML = "✨ Ciid Mubaarak Hooyo Macaan! ✨<br><br>Adigu tartan kuma jirtid, xaqal ciidkaaguna waa diyaar. <br><br>Waan ku jecelahay Hooyo! ❤️";
-            }
-        }
+        function renderHooyo() {
+            if (hooyoOpened) {
+                document.getElementById('hooyoContent').innerHTML = "✨ Ciid Mubaarak Hooyo Macaan! ✨<br><br>Adigu tartan kuma jirtid, xaqal ciidkaaguna waa diyaar. <br><br>Waan ku jecelahay Hooyo! ❤️";
+            }
+        }
 
-        function openHooyo() {
-            if (!hooyoOpened) {
-                document.getElementById('hooyoContent').innerHTML = "✨ Ciid Mubaarak Hooyo Macaan! ✨<br><br>Adigu tartan kuma jirtid, xaqal ciidkaaguna waa diyaar. <br><br>Waan ku jecelahay Hooyo! ❤️";
-                hooyoOpened = true;
-                saveGame(); 
-                
-                confetti({
-                    particleCount: 150,
-                    spread: 100,
-                    origin: { y: 0.6 },
-                    colors: ['#d4af37', '#2c5e3b', '#ffffff']
-                });
-            }
-        }
+        function openHooyo() {
+            if (!hooyoOpened) {
+                document.getElementById('hooyoContent').innerHTML = "✨ Ciid Mubaarak Hooyo Macaan! ✨<br><br>Adigu tartan kuma jirtid, xaqal ciidkaaguna waa diyaar. <br><br>Waan ku jecelahay Hooyo! ❤️";
+                hooyoOpened = true;
+                saveGame(); 
+                
+                confetti({
+                    particleCount: 150,
+                    spread: 100,
+                    origin: { y: 0.6 },
+                    colors: ['#d4af37', '#2c5e3b', '#ffffff']
+                });
+            }
+        }
 
-        // Data for the 13 people/boxes oo si xirfadaysan la isugu dhex qasay (WAA LA SAXAY)
-        const prizesData = [
-            { type: 'normal', challenge: "Waji faraxsan samee, kadib taabo mar kale! 😊", prize: "Nasiib wacan! Waxaad heshay <strong>10,000 SL SH</strong>. Waa lacag yar balse barako badan, qabooji niyada walaal! ✨" },
-            
-            // Sanduuqa 2aad - WAA LA SAXAY
-            { type: 'joke', challenge: "Iska dhig qof wayn oo maalqabeen ah kadib fur! 💪😎", prize: "Waan ka xunahay! Ciiddan waa tii carruurta, adigu waad weynaatay xaqal ciid ma lihid kkkk 😂 <br><div class='fursad-text'>Haniyad jabine, waxaad leedahay fursad kale ee dooro sanduuq kale! 🎁🏃‍♂️</div>" },
-            
-            { type: 'normal', challenge: "Qofka kugu xiga u sheeg hal shay oo aad ku jeceshahay, kadib fur! 🤝💕", prize: "Hambalyo! Waxaad heshay <strong>15,000 SL SH</strong>. Xoogaa waad dhaantaa qaar badan ee ku farax! 🌸" },
-            
-            { type: 'normal', challenge: "bakhaylnimada qofka kaa horeya ku wareeji, kadib fur! 🏃‍♂️💨", prize: "Waaaw! 🌟 Maanta adigaa ugu nasiib badan! Waxaad heshay <strong>40,000 SL SH!</strong> 💸 🎉 <br><br><em>Lakiin nasiib wanaagsanow... jaarkaaga ka warsug kkkk 😂</em>" },
-            
-            // Sanduuqa 5aad
-            { type: 'joke', challenge: "Dheh alxamdulillah inaad soo gaadhay ciidan kadib fur kkkk 👴👵", prize: "Waan ka xunahay xaqalciidkii sanduuqann wuu lumay kkkk 🤣 <br><div class='fursad-text'>Haniyad jabine, waxaad leedahay fursad kale ee dooro sanduuq kale ! 🎯</div>" },
-            
-            { type: 'normal', challenge: "Istaag oo dheh 'Anigaa qoyskan ugu qurxoon , hadii laga diidana waxbixi', kadib fur! 😂", prize: "Hambalyo! Asal ahaan waxaad heshay 10,000 SL SH... <br><strong>BALSE</strong> waxaad nasiib u yeelatay inaad 10,000 ka qaadato kii kaa horeeyay ee sanduuq (3)! Isku geyn waa <strong>20,000 SL SH!</strong> Kkkk 😈" },
-            
-            // Sanduuqa 7aad 
-            { type: 'special', challenge: "Wajigaaga ka dhig sidii qof liin dhanaan qaniinay 🍋, ilaa aan dhammaan wada qosolno,!, kadib fur! 🗣️", prize: "🎉 <strong>Aad baad u nasiib badantahay!</strong> Waxaad heshay bashqad qiimo badan! <br><br>Hadiyadaada lama sheegin, ee ila soo hadal sida ugu dhakhsaha badan si aad u hesho abaal marintaada qaaliga ah! 🎁🤫" },
-            
-            { type: 'normal', challenge: "qofka aad ugu jeceshahy wax ubalan qaad, kadib fur! 🙌", prize: "Nasiib wacan! Waxaad heshay <strong>10,000 SL SH</strong>. Qanaacadaa ugu wacan, ciid wanaagsan! 🎈" },
-            
-            { type: 'normal', challenge: "Qofka aad lacag ku leedahay xusuusi inuu iska bixiyo, kadib fur! 💸", prize: "Hambalyo! Waxaad heshay <strong>20,000 SL SH!</strong> Waa dhexdhexaad wacan, ciid mubaarak! 🎊" },
-            
-            // Sanduuqa 10aad 
-            { type: 'joke', challenge: "hooyo hal mar madaxa kasoo dhunko kadib fur 🗣️👴", prize: "Masha allah hambalyo adigu xaqalciidkaagi ajar ahaan ayaad u qaadatay oo hoyada ayaad so dhunkatay 💸🙅‍♂️ <br><div class='fursad-text'>Kaftan weeye! Haniyad jabine, sanduuq kale oo nasiibkaaga ah dooro! 🎲</div>" },
-            
-            { type: 'normal', challenge: "qof aad ku tuhunsantay inuu ramadantii kijada biyo ku cabay farta ku fiiq, kadib fur! 👉😂", prize: "Nasiib wacan! Waxaad heshay <strong>10,000 SL SH</strong>. Yaanay kugu yaraanin, niyadda wanaaji! 🌺" },
-            
-            { type: 'normal', challenge: "Isku day inaad suxulkaaga carrabka ku taabato!, kadib fur! 🎤", prize: "Hambalyo! Waxaad heshay <strong>15,000 SL SH</strong>. Ku ciid farxad iyo caafimaad! 🌙" },
-            
-            { type: 'normal', challenge: "Salaan diiran sii qofka kugu xiga ka hor intaanad furin! 🤗", prize: "Nasiib wacan! Waxaad heshay <strong>10,000 SL SH</strong>. Waa inoo ciida dambe iyo nasiib fiican! 😄" }
-        ];
+        // Data for the 13 people/boxes oo si xirfadaysan la isugu dhex qasay
+        const prizesData = [
+            { type: 'normal', challenge: "Waji faraxsan samee, kadib taabo mar kale! 😊", prize: "Nasiib wacan! Waxaad heshay <strong>10,000 SL SH</strong>. Waa lacag yar balse barako badan, qabooji niyada walaal! ✨" },
+            
+            // Sanduuqa 2aad (Qosol / iska dhig qof  wayn oo maalqabeen ah kadib fur! 💪😎", prize: "waan ka xunay! Ciiddan waa tii carruurta, adigu waad weynaatay xaqal ciid ma lihid kkkk 😂 <br><div class='fursad-text'>Haniyad jabine, waxaad leedahay fursad kale ee dooro sanduuq kale! 🎁🏃‍♂️</div>" },
+            
+            { type: 'normal', challenge: "Qofka kugu xiga u sheeg hal shay oo aad ku jeceshahay, kadib fur! 🤝💕", prize: "Hambalyo! Waxaad heshay <strong>15,000 SL SH</strong>. Xoogaa waad dhaantaa qaar badan ee ku farax! 🌸" },
+            
+            { type: 'normal', challenge: "bakhaylnimada qofka kaa horeya ku wareeji, kadib fur! 🏃‍♂️💨", prize: "Waaaw! 🌟 Maanta adigaa ugu nasiib badan! Waxaad heshay <strong>40,000 SL SH!</strong> 💸 🎉 <br><br><em>Lakiin nasiib wanaagsanow... jaarkaaga ka warsug kkkk 😂</em>" },
+            
+            // Sanduuqa 5aad (Qosol / Bilaa lacag)
+            { type: 'joke', challenge: "dheh alxamdulillah inaad soo gaadhay ciidan kadib fur kkkk 👴👵", prize: "waan ka xunahay xaqalciidki sanduuqann wuu lumay kkkk 🤣 <br><div class='fursad-text'>Haniyad jabine, waxaad leedahay fursad kale ee dooro sanduuq kale ! 🎯</div>" },
+            
+            { type: 'normal', challenge: "Istaag oo dheh 'Anigaa qoyskan ugu qurxoon , hadii laga diidana waxbixi', kadib fur! 😂", prize: "Hambalyo! Asal ahaan waxaad heshay 10,000 SL SH... <br><strong>BALSE</strong> waxaad nasiib u yeelatay inaad 10,000 ka qaadato kii kaa horeeyay ee sanduuq (3)! Isku geyn waa <strong>20,000 SL SH!</strong> Kkkk 😈" },
+            
+            // Sanduuqa 7aad (Kan Khaaska ah ee Hadiyada Qariyan)
+            { type: 'special', challenge: "Wajigaaga ka dhig sidii qof liin dhanaan qaniinay 🍋, ilaa aan dhammaan wada qosolno,!, kadib fur! 🗣️", prize: "🎉 <strong>Aad baad u nasiib badantahay!</strong> Waxaad heshay bashqad qiimo badan! <br><br>Hadiyadaada lama sheegin, ee ila soo hadal sida ugu dhakhsaha badan si aad u hesho abaal marintaada qaaliga ah! 🎁🤫" },
+            
+            { type: 'normal', challenge: "qofka aad ugu jeceshahy wax ubalan qaad', kadib fur! 🙌", prize: "Nasiib wacan! Waxaad heshay <strong>10,000 SL SH</strong>. Qanaacadaa ugu wacan, ciid wanaagsan! 🎈" },
+            
+            { type: 'normal', challenge: "Qofka aad lacag ku leedahay xusuusi inuu iska bixiyo, kadib fur! 💸", prize: "Hambalyo! Waxaad heshay <strong>20,000 SL SH!</strong> Waa dhexdhexaad wacan, ciid mubaarak! 🎊" },
+            
+            // Sanduuqa 10aad (Qosol / Bilaa lacag)
+            { type: 'joke', challenge: "hooyo hal mar madaxa kasoo dhunko kadib fur 🗣️👴", prize: "masha allah hambalyo adigu xaqalciidkaagi ajar ahaan ayaad uqadatay oo hoyada ayaad so dhunkatay 💸🙅‍♂️ <br><div class='fursad-text'>Kaftan weeye! Haniyad jabine, sanduuq kale oo nasiibkaaga ah dooro! 🎲</div>" },
+            
+            { type: 'normal', challenge: "qof aad ku tuhunsantay inuu ramadanti kijada biyo ku cabay farta ku fiiq, kadib fur! 👉😂", prize: "Nasiib wacan! Waxaad heshay <strong>10,000 SL SH</strong>. Yaanay kugu yaraanin, niyadda wanaaji! 🌺" },
+            
+            { type: 'normal', challenge: "Isku day inaad suxulkaaga carrabka ku taabato!, kadib fur! 🎤", prize: "Hambalyo! Waxaad heshay <strong>15,000 SL SH</strong>. Ku ciid farxad iyo caafimaad! 🌙" },
+            
+            { type: 'normal', challenge: "Salaan diiran sii qofka kugu xiga ka hor intaanad furin! 🤗", prize: "Nasiib wacan! Waxaad heshay <strong>10,000 SL SH</strong>. Waa inoo ciida dambe iyo nasiib fiican! 😄" }
+        ];
 
-        function createBoard() {
-            const board = document.getElementById('gameBoard');
-            for (let i = 0; i < 13; i++) {
-                let box = document.createElement('div');
-                box.id = 'box-' + i;
-                box.onclick = () => handleBoxClick(i);
+        function createBoard() {
+            const board = document.getElementById('gameBoard');
+            for (let i = 0; i < 13; i++) {
+                let box = document.createElement('div');
+                box.id = 'box-' + i;
+                box.onclick = () => handleBoxClick(i);
 
-                let state = boxStates[i];
-                if (state === 0) {
-                    box.className = 'box';
-                    box.innerHTML = `<strong>Sanduuqa ${i + 1}</strong>`;
-                } else if (state === 1) {
-                    box.className = 'box challenge-state';
-                    box.innerHTML = `${prizesData[i].challenge} <br><div class="small-text">(Taabo mar kale)</div>`;
-                } else if (state === 2) {
-                    box.className = 'box opened';
-                    box.innerHTML = prizesData[i].prize;
-                }
-                
-                board.appendChild(box);
-            }
-            renderHooyo(); 
-        }
+                let state = boxStates[i];
+                if (state === 0) {
+                    box.className = 'box';
+                    box.innerHTML = `<strong>Sanduuqa ${i + 1}</strong>`;
+                } else if (state === 1) {
+                    box.className = 'box challenge-state';
+                    box.innerHTML = `${prizesData[i].challenge} <br><div class="small-text">(Taabo mar kale)</div>`;
+                } else if (state === 2) {
+                    box.className = 'box opened';
+                    box.innerHTML = prizesData[i].prize;
+                }
+                
+                board.appendChild(box);
+            }
+            renderHooyo(); 
+        }
 
-        function handleBoxClick(index) {
-            let state = boxStates[index];
-            let boxElem = document.getElementById('box-' + index);
+        function handleBoxClick(index) {
+            let state = boxStates[index];
+            let boxElem = document.getElementById('box-' + index);
 
-            if (state === 0) {
-                boxElem.innerHTML = `${prizesData[index].challenge} <br><div class="small-text">(Taabo mar kale)</div>`;
-                boxElem.className = 'box challenge-state';
-                boxStates[index] = 1;
-                saveGame(); 
-            } else if (state === 1) {
-                boxElem.innerHTML = prizesData[index].prize;
-                boxElem.className = 'box opened';
-                boxStates[index] = 2;
-                saveGame(); 
+            if (state === 0) {
+                boxElem.innerHTML = `${prizesData[index].challenge} <br><div class="small-text">(Taabo mar kale)</div>`;
+                boxElem.className = 'box challenge-state';
+                boxStates[index] = 1;
+                saveGame(); 
+            } else if (state === 1) {
+                boxElem.innerHTML = prizesData[index].prize;
+                boxElem.className = 'box opened';
+                boxStates[index] = 2;
+                saveGame(); 
 
-                // Rashka oo lagu saleynayo nooca sanduuqa (type) intii index lagu saleyn lahaa
-                if (prizesData[index].type === 'special') {
-                    confetti({
-                        particleCount: 200,
-                        spread: 120,
-                        origin: { y: 0.5 },
-                        colors: ['#ff00ff', '#00ffff', '#ff0000', '#ffff00'] 
-                    });
-                } else if (prizesData[index].type === 'normal') {
-                    confetti({
-                        particleCount: 100,
-                        spread: 80,
-                        origin: { y: 0.6 },
-                        colors: ['#d4af37', '#2c5e3b', '#ffffff'] 
-                    });
-                }
-                // Haddii uu yahay 'joke' wax rash ah loo ridi maayo
-            }
-        }
+                // Rashka oo lagu saleynayo nooca sanduuqa (type) intii index lagu saleyn lahaa
+                if (prizesData[index].type === 'special') {
+                    confetti({
+                        particleCount: 200,
+                        spread: 120,
+                        origin: { y: 0.5 },
+                        colors: ['#ff00ff', '#00ffff', '#ff0000', '#ffff00'] 
+                    });
+                } else if (prizesData[index].type === 'normal') {
+                    confetti({
+                        particleCount: 100,
+                        spread: 80,
+                        origin: { y: 0.6 },
+                        colors: ['#d4af37', '#2c5e3b', '#ffffff'] 
+                    });
+                }
+                // Haddii uu yahay 'joke' wax rash ah loo ridi maayo
+            }
+        }
 
-        createBoard();
-    </script>
+        createBoard();
+    </script>
 </body>
 </html>
